@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import '../../Styles/tablelist.css';
+import '../../Styles/admin.css';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -40,7 +41,19 @@ const EventTablelist = () => {
 
     const handleSearch = (event) => {
         setSearchTerm(event.target.value);
-    }
+    };
+        
+    const filteredEvents = events.filter((event) => {
+        const searchValue = searchTerm.toLowerCase();
+        return (
+            event.location.toLowerCase().includes(searchValue) ||
+            event.status.toLowerCase().includes(searchValue) ||
+            event.startDate.includes(searchValue) ||
+            event.endDate.includes(searchValue)
+        );
+    });
+    
+        
 
     const handleUpdateClick = (event) => {
         setSelectedEvent(event);
@@ -90,6 +103,7 @@ const EventTablelist = () => {
     return (
         <>
             <div className='position'>
+            <input type="text" name="text" class="admin-input" placeholder="Search events" onChange={handleSearch}/>
                 <table>
                     <thead>
                         <tr>
@@ -104,28 +118,39 @@ const EventTablelist = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        {events.map((event, index) => (
+                        {filteredEvents.map((event, index) => (
                             <tr key={event.id}>
-                                <td>{index + 1}</td>
-                                <td>{event.title}</td>
-                                <td>{event.content.length > 50 ? `${event.content.slice(0, 50)}...` :
-                                    event.content}
-                                </td>
-                                <td>{event.location}</td>
-                                <td>{event.startDate}</td>
-                                <td>{event.endDate}</td>
-                                <td>{event.status}</td>
-                                <td>
-                                    <button className="preview-button" onClick={() => handlePreview(event)}>
-                                        <AiFillEye />
-                                    </button>
-                                    <button className='update-button' onClick={() => handleUpdateClick(event)}>
-                                        <HiPencilAlt />
-                                    </button>
-                                    <button className='delete-button' onClick={() => handleDeleteClick(event.id)}>
-                                        <FaTrash />
-                                    </button>
-                                </td>
+                            <td>{index + 1}</td>
+                            <td>{event.title}</td>
+                            <td>
+                                {event.content.length > 50
+                                ? `${event.content.slice(0, 50)}...`
+                                : event.content}
+                            </td>
+                            <td>{event.location}</td>
+                            <td>{event.startDate}</td>
+                            <td>{event.endDate}</td>
+                            <td>{event.status}</td>
+                            <td>
+                                <button
+                                className="preview-button"
+                                onClick={() => handlePreview(event)}
+                                >
+                                <AiFillEye />
+                                </button>
+                                <button
+                                className="update-button"
+                                onClick={() => handleUpdateClick(event)}
+                                >
+                                <HiPencilAlt />
+                                </button>
+                                <button
+                                className="delete-button"
+                                onClick={() => handleDeleteClick(event.id)}
+                                >
+                                <FaTrash />
+                                </button>
+                            </td>
                             </tr>
                         ))}
                     </tbody>
