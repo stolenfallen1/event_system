@@ -23,16 +23,19 @@ const AdminSideBar = () => {
             </button>
           </a>
         </li>
-        <li className="link">
-            <AdminProfile />
-          </li>
+        <li class="link">
+          <a href="/Settings">
+            <button className="btn-1">
+              <FiSettings className="ricon" />
+              Settings
+            </button>
+          </a>
+        </li>
         <li class="link">
           <a href="/signin" alt="logout">
-            <button>
-              <span className="logout">
+            <button className="logout">
                 <FiLogOut className="ricon" />
                 Logout
-              </span>
             </button>
           </a>
         </li>
