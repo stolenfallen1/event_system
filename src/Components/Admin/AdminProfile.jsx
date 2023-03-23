@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { FiSettings } from 'react-icons/fi';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+import { AiOutlineUser, AiOutlineLock } from 'react-icons/ai'
 import '../../Styles/admin.css';
 
 const Modal = () => {
@@ -31,7 +32,6 @@ const Modal = () => {
         <>
             <div className="admin-profile">
                 <div className="adminmodal-content">
-                    <div className="container">
                         <div className="row">
                             <div className="col-md-6">
                                 <img className='round-image' src='https://visualpharm.com/assets/314/Admin-595b40b65ba036ed117d36fe.svg' />
@@ -43,22 +43,25 @@ const Modal = () => {
                                             type="text"
                                             id="fullname"
                                             name="fullname"
+                                            className='input-adminform'
                                             value={admin.fullname}
                                         />
 
-                                        <label htmlFor="username">Username:</label>
+                                        <label htmlFor="username"><AiOutlineUser/> Username:</label>
                                         <input
                                             type="text"
                                             id="username"
                                             name="username"
+                                            className='input-adminform'
                                             value={admin.username}
                                         />
 
-                                        <label htmlFor="password">Password:</label>
+                                        <label htmlFor="password"><AiOutlineLock/> Password:</label>
                                         <input
                                             type="password"
                                             id="password"
                                             name="password"
+                                            className='input-adminform'
                                             value={admin.password}
                                         />
                                     </form>
@@ -74,7 +77,6 @@ const Modal = () => {
                         </div>
                     </div>
                 </div>
-            </div>
         </>
     );
 };
