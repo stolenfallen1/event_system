@@ -13,6 +13,7 @@ const AdminEventCards = () => {
   const [isHovered, setIsHovered] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedEvent, setSelectedEvent] = useState(null);
+  const [searchTerm, setSearchTerm] = useState('');
 
   useEffect(() => {
     const fetchEvents = async () => {
@@ -21,6 +22,21 @@ const AdminEventCards = () => {
     };
     fetchEvents();
   }, []);
+
+  const handleSearch = (event) => {
+    setSearchTerm(event.target.value);
+  };
+
+  const filteredEvents = events.filter((event) => {
+    const searchValue = searchTerm.toLowerCase();
+    return (
+      event.location.toLowerCase().includes(searchValue) ||
+      event.status.toLowerCase().includes(searchValue) ||
+      event.startDate.includes(searchValue) ||
+      event.endDate.includes(searchValue) ||
+      event.title.toLowerCase().includes(searchValue)
+    );
+  });
 
   const handleMouseEnter = () => {
     setIsHovered(true);
@@ -48,7 +64,7 @@ const AdminEventCards = () => {
     setSelectedEvent(event);
     setIsModalOpen(true);
   }
-  
+
   const handleUpdateEvent = (updatedEvent) => {
     axios.put('http://localhost:4000/updateEvent', updatedEvent)
       .then(response => {
@@ -72,7 +88,8 @@ const AdminEventCards = () => {
 
   return (
     <div className='admin-cards-wrapper'>
-      {events.map(event => (
+      <input type="text" name="text" class="admin-input" placeholder="Search events" onChange={handleSearch} />
+      {filteredEvents.map(event => (
         <div key={event.id} className='admin-maincard-wrapper' onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
           <div className='sample-cards'>
             {isHovered &&
@@ -84,19 +101,19 @@ const AdminEventCards = () => {
           </div>
           <div className='card-lower'>
             <h2>{event.title}</h2>
-            <p className='p-event-desc'>{event.content.length > 190 ? `${event.content.slice(0, 190)}...` :event.content}</p>
+            <p className='p-event-desc'>{event.content.length > 190 ? `${event.content.slice(0, 190)}...` : event.content}</p>
             <div className='sub-card-content'>
               <div className='sub-row-content'>
-              <GoCalendar />
-              <p className='p-event-desc'>Starts {new Date(event.startDate).toLocaleDateString('en-US', { month: 'long', day: '2-digit', year: 'numeric' })}</p>
-              <GoCalendar />
-              <p className='p-event-desc'>Ends {new Date(event.endDate).toLocaleDateString('en-US', { month: 'long', day: '2-digit', year: 'numeric' })}</p>
+                <GoCalendar />
+                <p className='p-event-desc'>Starts {new Date(event.startDate).toLocaleDateString('en-US', { month: 'long', day: '2-digit', year: 'numeric' })}</p>
+                <GoCalendar />
+                <p className='p-event-desc'>Ends {new Date(event.endDate).toLocaleDateString('en-US', { month: 'long', day: '2-digit', year: 'numeric' })}</p>
               </div>
               <div className='sub-row-content'>
-              <GoLocation />
-              <p className='p-event-desc'>{event.location}</p>
-              <MdOpenWith/>
-              <p className='p-event-desc'>{event.status}</p>
+                <GoLocation />
+                <p className='p-event-desc'>{event.location}</p>
+                <MdOpenWith />
+                <p className='p-event-desc'>{event.status}</p>
               </div>
             </div>
           </div>
