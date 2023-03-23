@@ -6,8 +6,20 @@ import { AiOutlineEye, AiOutlineDashboard } from 'react-icons/ai';
 import { FiSettings, FiLogOut } from 'react-icons/fi';
 import appLogo from '../../assets/app_logo.png';
 import AdminProfile from './AdminProfile';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const AdminSideBar = () => {
+
+  const handleLogout = () => {
+    // perform logout logic here
+    // if successful, redirect to /signin and show a success toast after a delay of 2 seconds
+    toast.success('Logged out successfully');
+    setTimeout(() => {
+      window.location.href = '/signin';
+    }, 2500);
+  }
+
   return (
     <div className="admin-dashboard">
     <div className="sidebar">
@@ -32,12 +44,12 @@ const AdminSideBar = () => {
           </a>
         </li>
         <li class="link">
-          <a href="/signin" alt="logout">
-            <button className="logout">
-                <FiLogOut className="ricon" />
-                Logout
-            </button>
-          </a>
+        <a href="#" alt="logout" onClick={handleLogout}>
+          <button className="logout">
+            <FiLogOut className="ricon" />
+            Logout
+          </button>
+        </a>
         </li>
       </ul>
     </div>
