@@ -3,15 +3,32 @@ const cors = require("cors");
 const Events = require("./eventsConfig");
 const Admin = require('./adminConfig');
 const app = express();
+const multer = require('multer');
+const upload = multer({ storage: multer.memoryStorage() });
 
 app.use(express.json());
 app.use(cors());
 
 // CRUD API for Events
-app.post("/createEvents", async (req, res) => {
-  const data = req.body;
-  await Events.add(data);
-  res.send({ msg: "Event Added" });
+app.post('/createEvents', upload.single('file'), async (req, res) => {
+  try {
+    const data = req.body;
+
+    // Upload file to Firebase Storage
+    let fileUrl;
+    if (req.file) {
+      const fileRef = storageRef.child(req.file.originalname);
+      await fileRef.put(req.file.buffer);
+      fileUrl = await fileRef.getDownloadURL();
+      data.fileUrl = fileUrl;
+    }
+
+    await Events.add(data);
+    res.send({ msg: 'Event Added' });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: 'Failed to create event' });
+  }
 });
 // OLD READ EVENTS API "DONT DELETE"
 // app.get("/readEvents", async (req, res) => {
