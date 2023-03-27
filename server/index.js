@@ -1,24 +1,24 @@
 const express = require("express");
 const cors = require("cors");
 const Events = require("./eventsConfig");
+const storageRef = require('./firebaseConfig').storageRef;
 const Admin = require('./adminConfig');
 const app = express();
-const multer = require('multer');
-const upload = multer({ storage: multer.memoryStorage() });
 
 app.use(express.json());
 app.use(cors());
 
 // CRUD API for Events
-app.post('/createEvents', upload.single('file'), async (req, res) => {
+app.post('/createEvents', async (req, res) => {
   try {
     const data = req.body;
 
     // Upload file to Firebase Storage
     let fileUrl;
-    if (req.file) {
-      const fileRef = storageRef.child(req.file.originalname);
-      await fileRef.put(req.file.buffer);
+    if (req.body.fileUrl) {
+      const fileRef = storageRef.child(req.body.fileName);
+      const fileBuffer = Buffer.from(req.body.fileUrl.split(',')[1], 'base64');
+      await fileRef.put(fileBuffer);
       fileUrl = await fileRef.getDownloadURL();
       data.fileUrl = fileUrl;
     }
