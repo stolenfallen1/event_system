@@ -18,6 +18,7 @@ const EventFormModal = () => {
     const startDate = event.target.elements.startDate.value;
     const endDate = event.target.elements.endDate.value;
     const status = event.target.elements.status.value;
+    const file = event.target.elements.file.value;
 
     if (window.confirm("Are you sure all details are already correct?")) {
       const response = await fetch('http://localhost:4000/createEvents', {
@@ -25,7 +26,7 @@ const EventFormModal = () => {
         headers: {
           'Content-Type': 'application/json'
         },
-        body: JSON.stringify({ title, content, location, startDate, endDate, status })
+        body: JSON.stringify({ title, content, location, startDate, endDate, status, file })
       });
 
       if (response.status === 200) {
@@ -73,9 +74,12 @@ const EventFormModal = () => {
               <option value='Finished Event'>Finished Event</option>
             </select>
 
+            <label htmlFor='file'>Event Image:</label>
+            <input type='file' id='file' name='file' />
+
             <div className='btn-wrap'>
               <button type='submit'>Submit</button>
-              <button type='button' onClick={toggleModal}>Cancel</button>
+              <button className='cancel-btn' type='button' onClick={toggleModal}>Cancel</button>
             </div>
           </form>
         </div>
