@@ -41,7 +41,11 @@ body {
   font-size: 1rem;
   font-weight: normal;
   line-height: 1.5;
-  background-color: #001632;
+  background: rgb(5,20,42);
+  background: radial-gradient(circle, rgba(5,20,42,0.938813025210084) 0%, rgba(18,30,41,1) 57%, rgba(5,5,5,1) 100%);
+  background-repeat: no-repeat;
+  height: auto;
+  min-height: 100vh;
   color: var(--color-black);
   background: var();
 }
@@ -73,7 +77,6 @@ img {
   max-width: 80rem;
   width: 100%;
   height: fit-content;
-  background-color: #001632;
   padding: 0 2rem;
   margin: 0 auto;
 }
@@ -142,7 +145,7 @@ img {
 }
 .main .wrapper .form {
   width: 100%;
-  height: 35vh;
+  height: 28vh;
   margin-top: 2rem;
 
 }
@@ -212,6 +215,17 @@ img {
 .back-wrap:hover{
   color: #626669;
 }
-
+.p-form{
+  color: #1A73E8;
+  cursor: pointer;
+  padding: 4px 4px;
+  
+}
+.p-form:hover{
+  background-color: #1a73e8ac;
+  padding: 4px 4px;
+  border-radius: 10px;
+  color: #ffff;
+}
 
 
