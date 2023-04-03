@@ -26,17 +26,20 @@ export const Register = () => {
 
 
         if (response.ok) {
-            const responseData = await response.json();
-            if (responseData.success) {
-                // redirect to the admin dashboard
-                window.location.href = '/Login';
+            if (response.status === 200) {
+                // wait for 1 second before redirecting to the admin dashboard
+                setTimeout(() => {
+                    window.location.href = '/signin';
+                }, 1000);
             } else {
+                // Registration failed
                 console.error('Registration failed');
             }
         } else {
             // display an error message
             console.error('Registration failed');
         }
+
 
     };
 
@@ -65,7 +68,7 @@ export const Register = () => {
                                 name="fullname"
                                 id="fullname"
                                 className="input-field"
-                                placeholder="fullname"
+                                placeholder="Fullname"
                                 required
                             />
                         </div>
@@ -104,6 +107,7 @@ export const Register = () => {
                             />
                         </div>
                     </form>
+                    <Link to="/signin"><p className='p-form'>Already have an account? Sign in.</p></Link>
                 </section>
             </div>
         </main>
