@@ -9,6 +9,7 @@ import Admin from './Views/Admin';
 import EventTablelist from './Components/Admin/EventTablelist';
 import AdminProfile from './Components/Admin/AdminProfile';
 import { Route, Routes } from "react-router-dom";
+import Imagetest from './Views/Imagetest';
 
 
 
@@ -30,12 +31,10 @@ function App() {
       {showSplashscreen && (
         <div><Splashscreen /></div>
       )}
-      {/* {!showSplashscreen && <Login />} */}
-      {/* <Events/> */}
-      {/* <Eventpage/> */}
       
     <Routes>
       <Route path="/" element={<Home/>}/>
+      <Route path="/test" element={<Imagetest/>}/>
       <Route path="/events" element={<Events/>}/>
       <Route path="/eventdetails" element={<Eventpage/>}/>
       <Route path="/signin" element={<Login/>}/>
