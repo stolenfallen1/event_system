@@ -25,6 +25,7 @@ const Events = () => {
         <Navs />
       </div>
       <div className='eventwrapper'>
+     
         {events.map(event => (
           <EventCards
             title={event.title}
@@ -33,7 +34,7 @@ const Events = () => {
             startDate={event.startDate}
             endDate={event.endDate}
             status={event.status}
-            img={vct}
+            img={event.downloadURL}
           />
         ))}
       </div>
