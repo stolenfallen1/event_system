@@ -1,16 +1,31 @@
 .home-container {
+    display: flex;
+    align-items: center;
+    /* justify-content: center; */
+    flex-direction: column;
+    background: no-repeat center;
     background-size: cover;
     height: 100vh;
     color: #FFF;
     transition: background-image 1s ease-in-out;
 }
+.home-container:before {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 400px;
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0), rgb(38, 38, 38));
+  }
 
 .home-header {
     display: flex;
     align-items: center;
     justify-content: space-between;
     padding: 10px 75px;
-    background-color: #0707074c;
+    width: 100vw;
+    background:#00000090;
 }
 
 .home-header h2 {
@@ -61,16 +76,28 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    padding: 0.5rem 10rem;
+    background:#000000ce;
+    background-size: cover;
+    background-position: center;
+    clip-path:polygon(15% 0,100% 0,80% 120%,-3% 120%);
+    box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+    backdrop-filter: blur( 2.5px );
+    -webkit-backdrop-filter: blur( 2.5px );
+    border: 1px solid rgba( 255, 255, 255, 0.18 );
+    transition: opacity 0.5s ease-in-out;
 }
-
 .home-content h1 {
     font-size: 5rem;
 }
-
 .home-controls {
     padding-top: 30px;
     color: #FFF;
     transition: opacity 0.5s ease-in-out;
+    display: flex;
+    flex-direction: row;
+    gap: 1rem
+    ;    
 }
 .fade-out {
     opacity: 0;
@@ -86,6 +113,43 @@
 
 .home-controls span {
     padding: 5px;
+}
+@media  (max-width:1300px) {
+    .home-content{
+        padding: 0.5rem 7rem;
+    }
+    .home-content h1 {
+        font-size: 3.5rem;
+    }
+    .controls{
+        font-size: 18px;
+    }
+}
+@media  (max-width:1000px) {
+    .home-content{
+        padding: 0.5rem 7rem;
+    }
+    .home-content h1 {
+        font-size: 2.5rem;
+    }
+    .controls{
+        font-size: 18px;
+    }
+    .eventr-logo{
+        width: 200px;
+    }
+}
+@media  (max-width:875px) {
+    .home-content{
+        padding: 0.5rem 7rem;
+    }
+    .home-content h1 {
+        font-size: 2rem;
+    }
+   
+    .controls{
+        font-size: 15px;
+    }
 }
 span{
     margin-right: 30px;
@@ -144,7 +208,7 @@ span{
 
 .title{
     transition: opacity 0.5s ease-in-out;
-    background: -webkit-linear-gradient(rgb(255, 255, 255), rgb(81, 78, 78));
+    background: -webkit-linear-gradient(rgb(255, 255, 255), rgb(191, 173, 173));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
@@ -154,7 +218,7 @@ span{
 /* *********** G O O G L E L I N K ************/
 .download-google-play{
     position: relative;
-    bottom: -20em;
+    bottom: -23em;
     padding: 10px 20px;
     border-radius: 7px;
     border: 1px solid rgb(12, 106, 214);
@@ -170,8 +234,13 @@ span{
     -moz-transition: all 0.2s ease-in;
     transition: all 0.2s ease-in;
 }
+@media  (max-width:940px) {
+    .download-google-play{
+        bottom: -10em;
+    }
+}
 .download-google-play:hover {
-    background: rgba(31, 55, 134, 0.708);
+    background: rgba(31, 55, 134, 0.88);
     box-shadow: 0 0 30px 5px rgba(0, 142, 236, 0.815);
     -webkit-transition: all 0.2s ease-out;
     -moz-transition: all 0.2s ease-out;
