@@ -32,7 +32,18 @@ const EventTablelist = () => {
 
 
     const handlePreview = (event) => {
-        setPreview({ event, isOpen: true });
+        setPreview({ 
+            event: {
+                title: event.title,
+                content: event.content,
+                location: event.location,
+                startDate: event.startDate,
+                endDate: event.endDate,
+                status: event.status,
+                img: event.downloadURL
+            }, 
+            isOpen: true 
+        });
     }
 
     const handleClose = () => {
