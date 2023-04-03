@@ -87,3 +87,32 @@ h4:hover{
     height: 35vh;
 }
 
+
+.test{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white; 
+    margin: 5rem; 
+    flex-direction: column;
+
+}
+.test-input{
+    margin: 1rem;
+    cursor: pointer;
+}
+.img-rap{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 3em;
+    width: auto;
+    height: auto;
+
+}
+.test-img{
+    margin: 2rem;
+    width: 100rem;
+    height: 50rem;
+}
+
+
