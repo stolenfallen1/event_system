@@ -92,6 +92,7 @@ const AdminEventCards = () => {
       {filteredEvents.map(event => (
         <div key={event.id} className='admin-maincard-wrapper' onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
           <div className='sample-cards'>
+            <img src={event.downloadURL}/>
             {isHovered &&
               <div className='card-buttons'>
                 <button className='delete-button' onClick={() => handleDeleteClick(event.id)}>Delete</button>
