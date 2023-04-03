@@ -8,14 +8,8 @@ const Splashscreen = () => {
 
     <div className="code-loader">
       <span>{'{'}</span>
-    </div>
-
-    <div className='p-loader'>DNA MICRO</div>
-
-    <div className="code-loader">
       <span>{'}'}</span>
     </div>
-
     </div>
   )
 }
