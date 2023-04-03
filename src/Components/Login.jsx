@@ -26,15 +26,20 @@ export const Login = () => {
     if (response.ok) {
       const responseData = await response.json();
       if (responseData.success) {
-        // redirect to the admin dashboard
-        window.location.href = '/Admin';
+        localStorage.setItem('adminUsername', username);
+        // wait for 1 second before redirecting to the admin dashboard
+        setTimeout(() => {
+          window.location.href = '/Admin';
+        }, 1000);
       } else {
+        // show the error toast message
         console.error('Login failed');
       }
     } else {
       // display an error message
       console.error('Login failed');
     }
+
 
   };
 
@@ -89,6 +94,7 @@ export const Login = () => {
               />
             </div>
           </form>
+          <Link to="/signup"><p className='p-form'>Don't have an account? Sign up.</p></Link>
         </section>
       </div>
     </main>
