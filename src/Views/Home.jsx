@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios'
+import axios from 'axios';
 import '../Styles/Home.css';
 import { Link } from 'react-router-dom';
 import { GoLocation } from 'react-icons/go';
 import { FaRegCalendarAlt, FaFacebook, FaGitlab, FaLinkedin, FaTiktok } from 'react-icons/fa';
-import { FcGoogle } from 'react-icons/fc'
+import { FcGoogle } from 'react-icons/fc';
 import appLogo from '../assets/app_logo.png';
 
 const Home = () => {
@@ -42,11 +42,10 @@ const Home = () => {
     }, 1000);
   };
 
-
   return (
-    <div>
+    <div className='home-container' style={{ backgroundImage: `url(${events[currentIndex]?.downloadURL})` }}>
       <header className='home-header'>
-        <Link to="/"><img src={appLogo} style={{ width: 275 }} /></Link>
+        <Link to="/"><img src={appLogo} className='eventr-logo' /></Link>
         <div>
           <a href="https://www.facebook.com/dnamicrosoftwareinc" > <FaFacebook className='header-icons' id="fb-icon" /> </a>
           <a href="http://gitlab.dnamicro.net/jhonlloydquizeo/event-system-intern-app-admin/-/tree/development" > <FaGitlab className='header-icons' id="gitlab-icon" /> </a>
@@ -55,15 +54,20 @@ const Home = () => {
           <Link to="/signin"><button className='login-btn'>Sign In</button></Link>
         </div>
       </header>
-      <main className="home-content">
+      <main className={`home-content${fadeOut ? ' fade-out' : ''}`}>
         <h1 className={`title${fadeOut ? ' fade-out' : ''}`}>{events[currentIndex]?.title}</h1>
         <div className={`home-controls${fadeOut ? ' fade-out' : ''}`}>
+          
           <FaRegCalendarAlt className="controls" color='#ffcc00' />
-          <span>Starts {new Date(events[currentIndex]?.startDate).toLocaleDateString('en-US', { month: 'long', day: '2-digit', year: 'numeric' })}</span>
+          <div className='controls'>Starts {new Date(events[currentIndex]?.startDate).toLocaleDateString('en-US', { month: 'long', day: '2-digit', year: 'numeric' })}</div>
+         
+          
           <FaRegCalendarAlt className="controls" color='#ffcc00' /> 
-          <span>Ends {new Date(events[currentIndex]?.endDate).toLocaleDateString('en-US', { month: 'long', day: '2-digit', year: 'numeric' })}</span>
+          <div className='controls'>Ends {new Date(events[currentIndex]?.endDate).toLocaleDateString('en-US', { month: 'long', day: '2-digit', year: 'numeric' })}</div>
+          
           <GoLocation className="controls" color='#ffcc00' />
-          <span>{events[currentIndex]?.location}</span>
+          <div className='controls'>{events[currentIndex]?.location}</div>
+         
         </div>
         <div className="event-card" onClick={handleClick}>
           {/* <img src={events[currentIndex]?.image} alt="event image" /> */}
@@ -71,11 +75,11 @@ const Home = () => {
           <p>{events[currentIndex]?.description}</p> */}
         </div>
         <br />
-        <button className='download-google-play'><a href='https://play.google.com/store/games?hl=en&gl=US' target='_blank'>
+      </main>
+      <button className='download-google-play'><a href='https://play.google.com/store/games?hl=en&gl=US' target='_blank'>
           <FcGoogle />&nbsp;&nbsp;
           Download in Google Play Store
         </a></button>
-      </main>
     </div>
   )
 }
